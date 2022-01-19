@@ -24,7 +24,7 @@ const client = new tmi.Client({
       reconnect: true
     },
     channels: [
-      'ancienteggbot'
+      'khaotico'
     ],
     identity: {
         username: 'AncientEggBot',
