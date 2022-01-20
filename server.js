@@ -29,7 +29,7 @@ const commands = {
       response: 'DOUBTERS :clown_face:'
     },
     time: {
-      response: `Current time for Khaotico: ${getTime.currentTime}`
+      response: `Current time for Khaotico: ${getTime()}`
     }
 }
 

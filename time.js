@@ -1,5 +1,7 @@
 var currentTime;
 
+getTime();
+
 function getTime() {
     const https = require('https');
     const req = https.request('https://timeapi.io/api/Time/current/zone?timeZone=America/Chicago', res => {
@@ -18,9 +20,9 @@ function getTime() {
             timeOfDay = "PM"
         }
 
-        console.log(hour + ':' + minute + timeOfDay + ' ' + timeZone)
-
         currentTime = hour + ':' + minute + timeOfDay + ' ' + timeZone;
+
+        console.log(currentTime);
 
         })
     })
@@ -30,6 +32,12 @@ function getTime() {
     })
     
     req.end()
+
+    return currentTime;
+
 }
+
+
+//console.log(currentTime);
 
 module.exports = { getTime };
