@@ -15,7 +15,10 @@ const commands = {
         response: 'Switch Friend Code: SW-3714-0961-8601'
     },
     refund: {
-        response: (user) => `${user} Your channel points Kappa :point_right: :chart_with_downwards_trend:`
+        response: (user) => `${user} Your channel points PepeLaugh :point_right: :chart_with_downwards_trend:`
+    },
+    schedule: {
+      response: 'Mondays, Wednesdays, and Fridays from 8pm CST to 12am-1am CST'
     }
 }
 
