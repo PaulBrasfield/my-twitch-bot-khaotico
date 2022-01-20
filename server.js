@@ -1,6 +1,8 @@
 require('dotenv').config();
+require("./time.js");
 
 const tmi = require('tmi.js');
+const { getTime } = require('./time');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
@@ -19,6 +21,15 @@ const commands = {
     },
     schedule: {
       response: 'Mondays, Wednesdays, and Fridays from 8pm CST to 12am-1am CST'
+    },
+    believers: {
+      response: 'BELIEVERS :clown_face:'
+    },
+    doubters: {
+      response: 'DOUBTERS :clown_face:'
+    },
+    time: {
+      response: `Current time for Khaotico: ${getTime.currentTime}`
     }
 }
 
