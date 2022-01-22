@@ -7,13 +7,11 @@ const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 let date = new Date();
 
 const timeInfo = {
-    hours: date.getHours(),
-    minutes: date.getMinutes(),
+    hours: date.getHours().toLocaleString('en-US'),
+    minutes: date.getMinutes().toLocaleString('en-US'),
     timeOfDay: 'AM',
     timeZone: 'CST',
 }
-
-checkTime(timeInfo.hours, timeInfo.minutes);
 
 var currentTime = timeInfo.hours + ":" + timeInfo.minutes + timeInfo.timeOfDay + ' ' + timeInfo.timeZone;
 
@@ -80,25 +78,3 @@ client.on('message', (channel, tags, message, self) => {
 	// "Alca: Hello, World!"
 	console.log(`${tags['display-name']}: ${message}`);
 });
-
-function checkTime(timeHours, timeMinutes) {
-    if (timeHours > 12) {
-        timeHours = timeHours - 12
-        timeInfo.timeOfDay = 'PM'
-    }
-    
-    if (timeMinutes < 10) {
-        timeMinutes = '0' + timeMinutes;
-    }
-
-    if (timeInfo.timeZone == 'CST') {
-        timeHours = timeHours - 6;
-    }
-
-    timeInfo.hours = timeHours;
-    timeInfo.minutes = timeMinutes;
-
-    return timeHours, timeMinutes
-}
-
-console.log(currentTime);
