@@ -78,11 +78,10 @@ function getTime() {
     let date = new Date();
 
     currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
-    console.log(currentTime);
+    //console.log(currentTime);
 
     commands.time.response = `Current time for Khaotico: ${currentTime}`
 
+    console.log("The time is: " + currentTime)
     
 }
-
-console.log("The time is: " + currentTime)
