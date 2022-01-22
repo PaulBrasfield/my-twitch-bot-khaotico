@@ -70,9 +70,7 @@ client.on('message', (channel, tags, message, self) => {
 	console.log(`${tags['display-name']}: ${message}`);
 });
 
-function printTimeCommand() {
-    console.log(commands.time);
-}
+console.log(commands.time);
 
 
 		
