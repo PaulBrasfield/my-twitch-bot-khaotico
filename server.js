@@ -6,6 +6,8 @@ const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
 var currentTime; // = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
 
+getTime();
+
 const commands = {
     twitter: {
         response: 'https://twitter.com/KhaoticoTTV/'
@@ -67,7 +69,7 @@ client.on('message', (channel, tags, message, self) => {
       }
 
       if (command === 'time') {
-          getTime();
+          currentTime = getTime();
       }
 
 	// "Alca: Hello, World!"
@@ -78,4 +80,8 @@ function getTime() {
     let date = new Date();
 
     currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
+
+    return currentTime
 }
+
+console.log(currentTime);
