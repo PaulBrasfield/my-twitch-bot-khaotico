@@ -6,6 +6,8 @@ const { get } = require('tmi.js/lib/utils');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
+var currentTime;
+
 const commands = {
     twitter: {
         response: 'https://twitter.com/KhaoticoTTV/'
@@ -29,8 +31,19 @@ const commands = {
         response: 'DOUBTERS :clown_face:'
     },
     time: {
-        response: `Current time for Khaotico: ${time.currentTime}`
+        response: `Current time for Khaotico: ${currentTime}`
     }
+}
+
+function readTime() {
+    fs.readFile('example.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+
+        this.currentTime = data;
+    })
 }
 
 const client = new tmi.Client({
@@ -69,6 +82,7 @@ client.on('message', (channel, tags, message, self) => {
       if (command === 'time') {
           console.log("Time command issued")
           time.getTime();
+          readTime();
           return time.currentTime;
       }
 
