@@ -69,6 +69,7 @@ client.on('message', (channel, tags, message, self) => {
       }
 
       if (command === 'time') {
+          console.log("Time command")
           getTime();
       }
 
