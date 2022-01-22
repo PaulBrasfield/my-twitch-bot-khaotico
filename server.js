@@ -69,7 +69,7 @@ client.on('message', (channel, tags, message, self) => {
       }
 
       if (command === 'time') {
-          currentTime = getTime();
+          getTime();
       }
 
 	// "Alca: Hello, World!"
