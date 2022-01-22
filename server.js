@@ -35,7 +35,7 @@ const commands = {
 
 getTime();
 
-var myTimeout = setTimeout(getTime, 60000);
+var myTimeout = setInterval(getTime, 60000);
 
 
 const client = new tmi.Client({
@@ -70,7 +70,6 @@ client.on('message', (channel, tags, message, self) => {
           client.say(channel, response);
       }
 
-	// "Alca: Hello, World!"
 	console.log(`${tags['display-name']}: ${message}`);
 });
 
@@ -78,7 +77,7 @@ function getTime() {
     let date = new Date();
 
     currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
-    //console.log(currentTime);
+    
 
     commands.time.response = `Current time for Khaotico: ${currentTime}`
 
