@@ -1,10 +1,10 @@
 require('dotenv').config();
-require("./time.js");
+const time = require('./time.js')
 
 const tmi = require('tmi.js');
-const { getTime } = require('./time');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
+
 
 const commands = {
     twitter: {
@@ -20,16 +20,16 @@ const commands = {
         response: (user) => `${user} Your channel points PepeLaugh :point_right: :chart_with_downwards_trend:`
     },
     schedule: {
-      response: 'Mondays, Wednesdays, and Fridays from 8pm CST to 12am-1am CST'
+        response: 'Mondays, Wednesdays, and Fridays from 8pm CST to 12am-1am CST'
     },
     believers: {
-      response: 'BELIEVERS :clown_face:'
+        response: 'BELIEVERS :clown_face:'
     },
     doubters: {
-      response: 'DOUBTERS :clown_face:'
+        response: 'DOUBTERS :clown_face:'
     },
     time: {
-      response: `Current time for Khaotico: ${getTime()}`
+        response: `Current time for Khaotico: ${time.getTime()}`
     }
 }
 
@@ -69,4 +69,10 @@ client.on('message', (channel, tags, message, self) => {
 	// "Alca: Hello, World!"
 	console.log(`${tags['display-name']}: ${message}`);
 });
+
+function printTimeCommand() {
+    console.log(commands.time);
+}
+
+
 		

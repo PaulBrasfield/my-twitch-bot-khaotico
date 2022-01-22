@@ -1,43 +1,67 @@
+const https = require('https');
+
 var currentTime;
 
-getTime();
+//getTime();
 
 function getTime() {
-    const https = require('https');
     const req = https.request('https://timeapi.io/api/Time/current/zone?timeZone=America/Chicago', res => {
-    
-        res.on('data', d => {
-        var x = JSON.parse(d);
-        var hour = JSON.stringify(x.hour);
-        var minute = JSON.stringify(x.minute);
-        var timeOfDay = "AM";
-        var timeZone = "CST"
 
-        //var currentTime;
+        var time = '';
+
+        var hour = '';
+        var minute = '';
+        var timeOfDay = 'AM';
+        var timeZone = 'CST';
+
+        res.on('data', d => { 
+        var x = JSON.parse(d);
+        hour = JSON.stringify(x.hour);
+        minute = JSON.stringify(x.minute);
+        timeOfDay = "AM";
+        timeZone = "CST"
+
+        //console.log(this.hour);
 
         if (hour > 12) {
             hour = hour - 12;
             timeOfDay = "PM"
         }
 
-        currentTime = hour + ':' + minute + timeOfDay + ' ' + timeZone;
+        if (minute < 10) {
+            minute = '0' + minute;
+        }
 
-        console.log(currentTime);
+        time = hour + ':' + minute + timeOfDay + ' ' + timeZone;
+
+        //currentTime = this.time;
+
+        //console.log(time);
+
+        printTime(time);
+
+        return time;
 
         })
     })
-    
+
     req.on('error', error => {
         console.error(error)
     })
-    
+
+
     req.end()
 
-    return currentTime;
-
+    
 }
 
+function getCurrentTime() {
+    return currentTime;
+}
 
-//console.log(currentTime);
+function printTime(x) {
+    currentTime = x;
+    console.log(currentTime);
+}
 
-module.exports = { getTime };
+module.exports = { getTime, getCurrentTime, currentTime }
