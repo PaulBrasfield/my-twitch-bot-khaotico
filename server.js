@@ -65,7 +65,7 @@ client.on('message', (channel, tags, message, self) => {
           client.say(channel, response);
       }
 
-      if (commands[command] === 'time') {
+      if (response === 'time') {
           console.log("Time command issued")
           time.getTime();
           return time.currentTime;
