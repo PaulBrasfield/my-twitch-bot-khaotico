@@ -6,10 +6,6 @@ const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
 var currentTime; // = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
 
-getTime();
-
-var myTimeout = setTimeout(getTime, 60000);
-
 const commands = {
     twitter: {
         response: 'https://twitter.com/KhaoticoTTV/'
@@ -36,6 +32,10 @@ const commands = {
         response: `Current time for Khaotico: ${currentTime}`
     }
 }
+
+getTime();
+
+var myTimeout = setTimeout(getTime, 60000);
 
 
 const client = new tmi.Client({
@@ -80,7 +80,9 @@ function getTime() {
     currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
     console.log(currentTime);
 
-    return currentTime
+    commands.time.response = `Current time for Khaotico: ${currentTime}`
+
+    
 }
 
-//console.log(currentTime);
+console.log("The time is: " + currentTime)
