@@ -30,6 +30,15 @@ const commands = {
     },
     time: {
         response: `Current time for Khaotico: ${currentTime}`
+    },
+    villagers: {
+        response: 'Current Villagers in Aria: Annabelle, Cranston, Doc, Dom, Ed, Eugene, Marina, Piper, Tad'
+    },
+    xboxblowout: {
+        response: 'By the rivers of Babylon, there we sat down, yea, we wept, when we remembered Zion. ' + 
+        'Remember, O Lord, The Children of Edom in the day of Jerusalem who said, "Raze it, raze it, ' + 
+        'even to the foundation." O daughter of Babylon, who art to be destroyed. ' + 
+        'How happy shall he be, that rew https://twitter.com/pauljac3_/status/984445523326263296?s=20'
     }
 }
 
