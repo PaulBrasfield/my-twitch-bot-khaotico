@@ -6,14 +6,7 @@ const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
 let date = new Date();
 
-const timeInfo = {
-    hours: date.getHours().toLocaleString('en-US'),
-    minutes: date.getMinutes().toLocaleString('en-US'),
-    timeOfDay: 'AM',
-    timeZone: 'CST',
-}
-
-var currentTime = timeInfo.hours + ":" + timeInfo.minutes + timeInfo.timeOfDay + ' ' + timeInfo.timeZone;
+var currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
 
 const commands = {
     twitter: {
