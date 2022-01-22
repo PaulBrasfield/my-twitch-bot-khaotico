@@ -91,6 +91,10 @@ function checkTime(timeHours, timeMinutes) {
         timeMinutes = '0' + timeMinutes;
     }
 
+    if (timeInfo.timeZone == 'CST') {
+        timeHours = timeHours - 6;
+    }
+
     timeInfo.hours = timeHours;
     timeInfo.minutes = timeMinutes;
 
@@ -98,4 +102,3 @@ function checkTime(timeHours, timeMinutes) {
 }
 
 console.log(currentTime);
-		
