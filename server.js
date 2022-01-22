@@ -2,6 +2,7 @@ require('dotenv').config();
 const time = require('./time.js')
 
 const tmi = require('tmi.js');
+const { get } = require('tmi.js/lib/utils');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
@@ -65,7 +66,7 @@ client.on('message', (channel, tags, message, self) => {
           client.say(channel, response);
       }
 
-      if (response === 'time') {
+      if (command === 'time') {
           console.log("Time command issued")
           time.getTime();
           return time.currentTime;
