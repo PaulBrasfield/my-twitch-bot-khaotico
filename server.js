@@ -65,12 +65,11 @@ client.on('message', (channel, tags, message, self) => {
       if ( typeof response === 'function' ) {
         client.say(channel, response(tags.username))
       } else if ( typeof response === 'string' ) {
+        if (command === 'time') {
+            console.log("Time command")
+            getTime();
+        }
           client.say(channel, response);
-      }
-
-      if (command === 'time') {
-          console.log("Time command")
-          getTime();
       }
 
 	// "Alca: Hello, World!"
