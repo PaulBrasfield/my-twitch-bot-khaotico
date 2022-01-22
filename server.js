@@ -1,12 +1,21 @@
 require('dotenv').config();
-const time = require('./time.js')
 
 const tmi = require('tmi.js');
-const { get } = require('tmi.js/lib/utils');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
-var currentTime;
+let date = new Date();
+
+const timeInfo = {
+    hours: date.getHours(),
+    minutes: date.getMinutes(),
+    timeOfDay: 'AM',
+    timeZone: 'CST',
+}
+
+checkTime(timeInfo.hours, timeInfo.minutes);
+
+var currentTime = timeInfo.hours + ":" + timeInfo.minutes + timeInfo.timeOfDay + ' ' + timeInfo.timeZone;
 
 const commands = {
     twitter: {
@@ -35,16 +44,6 @@ const commands = {
     }
 }
 
-function readTime() {
-    fs.readFile('example.txt', 'utf8', (err, data) => {
-        if (err) {
-            console.error(err)
-            return
-        }
-
-        this.currentTime = data;
-    })
-}
 
 const client = new tmi.Client({
     connection: {
@@ -60,7 +59,6 @@ const client = new tmi.Client({
   });
 
 client.connect();
-
 
 
 client.on('message', (channel, tags, message, self) => {
@@ -79,17 +77,25 @@ client.on('message', (channel, tags, message, self) => {
           client.say(channel, response);
       }
 
-      if (command === 'time') {
-          console.log("Time command issued")
-          time.getTime();
-          readTime();
-          return time.currentTime;
-      }
-
 	// "Alca: Hello, World!"
 	console.log(`${tags['display-name']}: ${message}`);
 });
 
+function checkTime(timeHours, timeMinutes) {
+    if (timeHours > 12) {
+        timeHours = timeHours - 12
+        timeInfo.timeOfDay = 'PM'
+    }
+    
+    if (timeMinutes < 10) {
+        timeMinutes = '0' + timeMinutes;
+    }
 
+    timeInfo.hours = timeHours;
+    timeInfo.minutes = timeMinutes;
 
+    return timeHours, timeMinutes
+}
+
+console.log(currentTime);
 		
