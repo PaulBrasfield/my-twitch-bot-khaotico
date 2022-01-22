@@ -4,8 +4,6 @@ const tmi = require('tmi.js');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
-let date = new Date();
-
 var currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
 
 const commands = {
@@ -68,6 +66,16 @@ client.on('message', (channel, tags, message, self) => {
           client.say(channel, response);
       }
 
+      if (command === 'time') {
+          getTime();
+      }
+
 	// "Alca: Hello, World!"
 	console.log(`${tags['display-name']}: ${message}`);
 });
+
+function getTime() {
+    let date = new Date();
+
+    currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
+}
