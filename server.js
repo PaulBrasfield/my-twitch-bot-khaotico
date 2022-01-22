@@ -4,7 +4,7 @@ const tmi = require('tmi.js');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
-var currentTime = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
+var currentTime; // = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
 
 const commands = {
     twitter: {
