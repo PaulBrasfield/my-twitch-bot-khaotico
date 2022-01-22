@@ -5,7 +5,6 @@ const tmi = require('tmi.js');
 
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
-
 const commands = {
     twitter: {
         response: 'https://twitter.com/KhaoticoTTV/'
@@ -29,7 +28,7 @@ const commands = {
         response: 'DOUBTERS :clown_face:'
     },
     time: {
-        response: `Current time for Khaotico: ${time.getTime()}`
+        response: `Current time for Khaotico: ${time.currentTime}`
     }
 }
 
@@ -66,11 +65,16 @@ client.on('message', (channel, tags, message, self) => {
           client.say(channel, response);
       }
 
+      if (commands[command] === 'time') {
+          console.log("Time command issued")
+          time.getTime();
+          return time.currentTime;
+      }
+
 	// "Alca: Hello, World!"
 	console.log(`${tags['display-name']}: ${message}`);
 });
 
-console.log(commands.time);
 
 
 		

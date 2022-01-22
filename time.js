@@ -1,13 +1,15 @@
+const fs = require("fs");
 const https = require('https');
 
-var currentTime;
-
-//getTime();
+//getTime()
 
 function getTime() {
-    const req = https.request('https://timeapi.io/api/Time/current/zone?timeZone=America/Chicago', res => {
+    APICall();
+}
 
-        var time = '';
+function APICall() {
+    var time = '';
+    const req = https.request('https://timeapi.io/api/Time/current/zone?timeZone=America/Chicago', res => {
 
         var hour = '';
         var minute = '';
@@ -21,8 +23,6 @@ function getTime() {
         timeOfDay = "AM";
         timeZone = "CST"
 
-        //console.log(this.hour);
-
         if (hour > 12) {
             hour = hour - 12;
             timeOfDay = "PM"
@@ -34,14 +34,8 @@ function getTime() {
 
         time = hour + ':' + minute + timeOfDay + ' ' + timeZone;
 
-        //currentTime = this.time;
-
-        //console.log(time);
-
-        printTime(time);
-
-        return time;
-
+        var file = fs.createWriteStream("example.txt");
+        file.write(time);
         })
     })
 
@@ -49,19 +43,28 @@ function getTime() {
         console.error(error)
     })
 
+    req.end();
 
-    req.end()
+    readTime();
 
-    
 }
 
-function getCurrentTime() {
-    return currentTime;
+function readTime() {
+    fs.readFile('example.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        printTime(data);
+    })
+
 }
 
-function printTime(x) {
-    currentTime = x;
-    console.log(currentTime);
+var currentTime;
+
+function printTime(dataTime) {
+    this.currentTime = dataTime
+    console.log("The time is: " + this.currentTime)
 }
 
-module.exports = { getTime, getCurrentTime, currentTime }
+module.exports = { getTime, currentTime }
