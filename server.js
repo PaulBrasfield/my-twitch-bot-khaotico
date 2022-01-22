@@ -6,7 +6,7 @@ const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 
 var currentTime; // = date.toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute:'2-digit'}) + " CST"
 
-getTime();
+setTimeout(getTime, 1000);
 
 const commands = {
     twitter: {
@@ -65,10 +65,6 @@ client.on('message', (channel, tags, message, self) => {
       if ( typeof response === 'function' ) {
         client.say(channel, response(tags.username))
       } else if ( typeof response === 'string' ) {
-        if (command === 'time') {
-            console.log("Time command")
-            getTime();
-        }
           client.say(channel, response);
       }
 
