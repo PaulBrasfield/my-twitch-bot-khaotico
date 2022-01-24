@@ -44,7 +44,7 @@ const commands = {
 
 getTime();
 
-var myTimeout = setInterval(getTime, 60000);
+setInterval(getTime, 60000);
 
 
 const client = new tmi.Client({
@@ -55,12 +55,16 @@ const client = new tmi.Client({
       'khaotico'
     ],
     identity: {
-        username: 'AncientEggBot',
-        password: 'oauth:ff44sv55vru2v2io78g941hkhi7358'
+        username: process.env.TWITCH_BOT_USERNAME,
+        password: process.env.TWITCH_OAUTH_TOKEN
     }
   });
 
 client.connect();
+
+client.on('connected', () => {
+    console.log("Connected to the channel successfully!")
+})
 
 
 client.on('message', (channel, tags, message, self) => {
