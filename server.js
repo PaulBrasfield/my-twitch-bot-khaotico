@@ -62,10 +62,6 @@ const client = new tmi.Client({
 
 client.connect();
 
-client.on('connected', () => {
-    console.log("Connected to the channel successfully!")
-})
-
 
 client.on('message', (channel, tags, message, self) => {
     
