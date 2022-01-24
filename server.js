@@ -42,10 +42,6 @@ const commands = {
     }
 }
 
-getTime();
-
-setInterval(getTime, 60000);
-
 
 const client = new tmi.Client({
     connection: {
@@ -63,7 +59,13 @@ const client = new tmi.Client({
 client.connect();
 
 client.on('connected', () => {
+    console.log("Ancient Egg Bot v1.0")
+    console.log("--------------------\n")
     console.log("\nConnected to the channel successfully!\n")
+    
+    getTime();
+
+    setInterval(getTime, 60000);
 })
 
 
